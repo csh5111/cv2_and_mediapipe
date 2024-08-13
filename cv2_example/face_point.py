@@ -6,8 +6,8 @@ cap = cv2.VideoCapture(0)
 
 
 mpDraw = mp.solutions.drawing_utils
-mpHands = mp.solutions.hands
-faceMesh = mpHands.Hands()
+mpFaces = mp.solutions.face_mesh
+faceMesh = mpFaces.FaceMesh(max_num_faces=1)
 # max_num_faces=1
 
 while True:
@@ -15,10 +15,10 @@ while True:
     imgRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
     result = faceMesh.process(imgRGB)
     # print(result.multi_face_landmarks)
-    if result.multi_hand_landmarks:
-        for handlms in result.multi_hand_landmarks:
-            mpDraw.draw_landmarks(img,handlms)
-        # ,FACE_CONNECTIONS,,mpFaceMesh
+    if result.multi_face_landmarks:
+        for facelms in result.multi_face_landmarks:
+            mpDraw.draw_landmarks(img,facelms)
+        # ,FACE_CONNECTIONS,,mpFacseMesh
     flip = cv2.flip(img, 1)
     cv2.imshow('damn', flip)
     # cv2.imshow('damn',img)

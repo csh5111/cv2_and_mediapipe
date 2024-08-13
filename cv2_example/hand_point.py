@@ -18,9 +18,10 @@ while True:
     if result.multi_hand_landmarks:
         for handlms in result.multi_hand_landmarks:
             mpDraw.draw_landmarks(img,handlms)
-        
 
-    cv2.imshow('damn',img)
+    flip = cv2.flip(img, 1)
+    cv2.imshow('damn', flip)
+    # cv2.imshow('damn',img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
         cap.release()                    #按‘q’键退出后，释放摄像头资源
